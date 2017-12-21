@@ -31,7 +31,7 @@ class App extends Component {
     this.setState((state) => ({
       contacts: state.contacts.filter(contactItem => contactItem.id !== updatedContactItem.id)
     }))
-    
+
   }
 
   render() {
