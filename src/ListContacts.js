@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import escapeRegExp from 'escape-string-regexp';
+import sortBy from 'sort-by';
 
 class ListContacts extends Component {
 
@@ -19,6 +21,17 @@ class ListContacts extends Component {
 
   render() {
 
+    let showingContacts;
+
+    if (this.state.query) {
+      const match = new RegExp(escapeRegExp(this.state.query), 'i')
+      showingContacts = this.props.contactsItems.filter((contactItem) => match.test(contactItem.name));
+    } else {
+      showingContacts = this.props.contactsItems;
+    }
+
+    showingContacts.sort(sortBy('name'));
+
     return (
 
       <div className='list-contacts'>
@@ -34,7 +47,7 @@ class ListContacts extends Component {
 
         <ol className='contact-list'>
           {
-            this.props.contactsItems.map((contactItem, index) => {
+            showingContacts.map((contactItem, index) => {
               return (
                 <li key={index} className='contact-list-item'>
 
