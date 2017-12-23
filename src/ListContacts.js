@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import escapeRegExp from 'escape-string-regexp';
 import sortBy from 'sort-by';
+import { Link } from 'react-router-dom';
 
 class ListContacts extends Component {
 
@@ -26,7 +27,7 @@ class ListContacts extends Component {
 
   render() {
 
-    const { onDeleteContact, contactsItems, createScreen } = this.props;
+    const { onDeleteContact, contactsItems } = this.props;
     const { query } = this.state;
 
     let showingContacts;
@@ -51,15 +52,11 @@ class ListContacts extends Component {
             value={this.state.query}
             onChange={event => { this.updateQuery(event.target.value) }}
           />
-          <a
-            href="#createContact"
-            onClick={() => {
-              createScreen()
-            }}
-            className='add-contact'
-          >
+          <Link
+            to="/createContact"
+            className='add-contact'>
             Add Contact
-          </a>
+          </Link>
         </div>
 
         {
@@ -103,7 +100,7 @@ class ListContacts extends Component {
           }
         </ol>
       </div>
-    )
+    );
   }
 }
 
