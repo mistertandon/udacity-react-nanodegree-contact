@@ -26,7 +26,7 @@ class ListContacts extends Component {
 
   render() {
 
-    const { onDeleteContact, contactsItems } = this.props;
+    const { onDeleteContact, contactsItems, createScreen } = this.props;
     const { query } = this.state;
 
     let showingContacts;
@@ -51,6 +51,15 @@ class ListContacts extends Component {
             value={this.state.query}
             onChange={event => { this.updateQuery(event.target.value) }}
           />
+          <a
+            href="#createContact"
+            onClick={() => {
+              createScreen()
+            }}
+            className='add-contact'
+          >
+            Add Contact
+          </a>
         </div>
 
         {
@@ -64,7 +73,9 @@ class ListContacts extends Component {
 
         <ol className='contact-list'>
           {
+
             showingContacts.map((contactItem, index) => {
+
               return (
                 <li key={index} className='contact-list-item'>
 
