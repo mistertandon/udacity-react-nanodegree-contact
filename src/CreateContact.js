@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ImageInput from './ImageInput';
+import serializeForm from 'form-serialize';
 
 class CreateContact extends Component {
+
+  handleSubmit = (event) => {
+
+    event.preventDefault();
+    const value = serializeForm(event.target, { hash: true });
+
+    this.props.onCreateCOntact(value);
+  }
 
   render() {
 
@@ -14,7 +23,7 @@ class CreateContact extends Component {
           to='/'
           className="close-create-contact">Create Contact</Link>
 
-        <form className="create-contact-form">
+        <form onSubmit={this.handleSubmit} className="create-contact-form">
           <ImageInput
             className="create-contact-avatar-input"
             name="avatarURL"

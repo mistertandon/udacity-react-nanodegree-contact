@@ -15,7 +15,9 @@
   },
   "devDependencies": {
     "escape-string-regexp": "^1.0.5",
+    "form-serialize": "^0.7.2",
     "prop-types": "^15.6.0",
+    "react-router-dom": "^4.2.2",
     "sort-by": "^1.2.0"
   }
 }

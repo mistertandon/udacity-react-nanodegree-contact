@@ -31,13 +31,18 @@ class App extends Component {
 
   }
 
-  createScreen = () => {
+  createContact = (contactItem) => {
 
-    this.setState((state) => ({
-      screen: 'create'
-    }))
+    ContactApi
+      .create(contactItem)
+      .then((contact) => {
 
+        this.setState((state) => ({
+          contacts: state.contacts.concat([contact])
+        }));
+      });
   }
+
 
   render() {
 
@@ -55,7 +60,11 @@ class App extends Component {
           } />
         }
 
-        <Route path='/createContact' component={CreateContact} />
+        <Route path='/createContact' render={() =>
+          (
+            <CreateContact onCreateCOntact={(contact) => { this.createContact(contact) }} />
+          )
+        } />
 
       </div>
     )
